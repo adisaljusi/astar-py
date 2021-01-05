@@ -1,38 +1,12 @@
 import { useState } from "react";
-import { createGridArray } from "./Node/helper";
+import { createGridArray, styleSelectedNode } from "./Node/helper";
 import Node from "./Node/Node";
 
 const PathVisualizer = () => {
   const [grid, setGrid] = useState(createGridArray());
   const [solution, setSolution] = useState(null);
-  const start = [3, 5];
-  const end = [7, 5];
-
-  const styleSelectedNode = (value) => {
-    const x = value[0];
-    const y = value[1];
-
-    if (solution !== null) {
-      for (let t of solution) {
-        const sX = t[0];
-        const sY = t[1];
-
-        if (sX === x && sY === y) {
-          return "solution";
-        }
-      }
-    }
-
-    if (start[0] === x && start[1] === y) {
-      return "start";
-    } else if (end[0] === x && start[1] === y) {
-      return "end";
-    } else if (grid[x][y] !== 0) {
-      return "selected";
-    }
-
-    return "";
-  };
+  const start = [1, 5];
+  const end = [8, 5];
 
   const getAStarSolution = async () => {
     fetch("http://127.0.0.1:5000/api/astar", {
@@ -67,7 +41,10 @@ const PathVisualizer = () => {
     setGrid(tmpGrid);
   };
 
-  const reset = () => setGrid(createGridArray());
+  const reset = () => {
+    setGrid(createGridArray());
+    setSolution(null);
+  };
 
   return (
     <div>
@@ -78,7 +55,15 @@ const PathVisualizer = () => {
               const value = [i, gridIx];
               return (
                 <div key={value} onClick={(e) => onNodeClick(e, value)}>
-                  <Node classValue={styleSelectedNode(value)} />
+                  <Node
+                    classValue={styleSelectedNode(
+                      value,
+                      grid,
+                      start,
+                      end,
+                      solution
+                    )}
+                  />
                 </div>
               );
             })}

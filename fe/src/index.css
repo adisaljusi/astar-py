@@ -17,14 +17,16 @@ code {
 }
 
 .node {
-  width: 35px;
-  height: 35px;
+  width: 55px;
+  height: 55px;
   border: 2px rgba(0, 0, 0, 0.7) solid;
   border-radius: 10%;
+  box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.8);
 }
 
 .selected {
   background: #003399;
+  box-shadow: 0 0 10px 0px #003399;
   transition: all 250ms ease-in-out;
 }
 
@@ -38,4 +40,7 @@ code {
 
 .solution {
   background: #ff8800;
+  box-shadow: 0 0 20px 0px #ff8800, 0 0 20px 5px #ffbb00;
+  transition: all 500ms ease-in-out;
+  z-index: 99999;
 }

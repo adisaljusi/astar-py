@@ -17,7 +17,6 @@ def get_astar_solution():
     grid = r['grid']
 
     result = astar(grid, start, end)
-    print(result)
 
     res = Response(mimetype="application/json", headers={'Access-Control-Allow-Origin': '*'})
     res.data = json.dumps(result)

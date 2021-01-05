@@ -18,7 +18,6 @@ def main():
 
     path = astar(grid, start, end)
     print(path)
-    print(len(path) - 1)
 
 
 if __name__ == '__main__':
