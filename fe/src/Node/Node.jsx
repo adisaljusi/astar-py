@@ -1,9 +1,3 @@
-import react from 'react';
+const Node = (props) => <div className={`node ${props.classValue}`}></div>;
 
-const Node = (props) => {
-  return (
-    <div>
-
-    </div>
-  )
-}
+export default Node;
