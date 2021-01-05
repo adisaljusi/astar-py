@@ -19,8 +19,8 @@ code {
 .node {
   width: 35px;
   height: 35px;
-  border: 2px black solid;
-  border-radius: 20%;
+  border: 2px rgba(0, 0, 0, 0.7) solid;
+  border-radius: 10%;
 }
 
 .selected {
@@ -33,5 +33,9 @@ code {
 }
 
 .end {
-  background: #FF0000;
+  background: #ff0000;
+}
+
+.solution {
+  background: #ff8800;
 }

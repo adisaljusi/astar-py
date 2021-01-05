@@ -4,26 +4,56 @@ import Node from "./Node/Node";
 
 const PathVisualizer = () => {
   const [grid, setGrid] = useState(createGridArray());
-  const start = [3, 10];
-  const end = [17, 10];
+  const [solution, setSolution] = useState(null);
+  const start = [3, 5];
+  const end = [7, 5];
 
   const styleSelectedNode = (value) => {
     const x = value[0];
     const y = value[1];
 
+    if (solution !== null) {
+      for (let t of solution) {
+        const sX = t[0];
+        const sY = t[1];
+
+        if (sX === x && sY === y) {
+          return "solution";
+        }
+      }
+    }
+
     if (start[0] === x && start[1] === y) {
       return "start";
     } else if (end[0] === x && start[1] === y) {
       return "end";
-    } else if (grid[x][y] === 1) {
+    } else if (grid[x][y] !== 0) {
       return "selected";
     }
 
     return "";
   };
 
+  const getAStarSolution = async () => {
+    fetch("http://127.0.0.1:5000/api/astar", {
+      method: "POST",
+      body: JSON.stringify({
+        start: start,
+        end: end,
+        grid: grid,
+      }),
+      headers: new Headers({
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => setSolution(res));
+  };
+
   const onNodeClick = (e, value) => {
     e.preventDefault();
+    setSolution(null);
     const x = value[0];
     const y = value[1];
 
@@ -55,8 +85,12 @@ const PathVisualizer = () => {
           </div>
         );
       })}
-      <button>A* Algorithm</button>
-      <button onClick={reset}>reset</button>
+      <button className="btn btn-primary" onClick={getAStarSolution}>
+        A* Algorithm
+      </button>
+      <button className="btn btn-danger" onClick={reset}>
+        Reset
+      </button>
     </div>
   );
 };
