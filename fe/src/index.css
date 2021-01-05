@@ -17,15 +17,15 @@ code {
 }
 
 .node {
-  width: 25px;
-  height: 25px;
-  border: 1px black solid;
+  width: 35px;
+  height: 35px;
+  border: 2px black solid;
   border-radius: 20%;
 }
 
 .selected {
   background: #003399;
-  transition: 250ms ease-in-out;
+  transition: all 250ms ease-in-out;
 }
 
 .start {
