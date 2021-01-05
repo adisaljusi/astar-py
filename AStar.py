@@ -5,7 +5,6 @@ from Node import Node
 def astar(grid, start, end):
     start_node = Node(None, start)
     end_node = Node(None, end)
-
     open_nodes = []
     closed_nodes = []
 
@@ -30,23 +29,16 @@ def astar(grid, start, end):
             while current is not None:
                 path.append(current.position)
                 current = current.parent
+            # returns reversed path
             return path[::-1]
 
         children = generate_children(grid, current_node, closed_nodes)
 
         for child in children:
-            for closed_child in closed_nodes:
-                if child == closed_child:
-                    continue
-
             child.G = current_node.G + 1
             child.H = (child.position[0] - end_node.position[0] ** 2) + (
                     (child.position[1] - end_node.position[1]) ** 2)
             child.F = child.G + child.H
-
-            for open_node in open_nodes:
-                if child == open_node and child.G > open_node.G:
-                    continue
 
             open_nodes.append(child)
 
