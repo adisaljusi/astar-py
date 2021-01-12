@@ -17,8 +17,8 @@ code {
 }
 
 .node {
-  width: 35px;
-  height: 35px;
+  width: 55px;
+  height: 55px;
   border: 2px rgba(0, 0, 0, 0.7) solid;
   border-radius: 10%;
 }

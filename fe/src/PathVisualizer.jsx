@@ -12,6 +12,15 @@ const PathVisualizer = () => {
     const x = value[0];
     const y = value[1];
 
+
+    if (start[0] === x && start[1] === y) {
+      return "start";
+    } else if (end[0] === x && start[1] === y) {
+      return "end";
+    } else if (grid[x][y] !== 0) {
+      return "selected";
+    }
+
     if (solution !== null) {
       for (let t of solution) {
         const sX = t[0];
@@ -21,14 +30,6 @@ const PathVisualizer = () => {
           return "solution";
         }
       }
-    }
-
-    if (start[0] === x && start[1] === y) {
-      return "start";
-    } else if (end[0] === x && start[1] === y) {
-      return "end";
-    } else if (grid[x][y] !== 0) {
-      return "selected";
     }
 
     return "";
@@ -43,8 +44,7 @@ const PathVisualizer = () => {
         grid: grid,
       }),
       headers: new Headers({
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json"
       }),
     })
       .then((res) => res.json())
