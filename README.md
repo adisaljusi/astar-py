@@ -35,10 +35,10 @@ Starting from a specific starting node of a graph, it looks to find the path to 
 At each iteration of its main loop, A* needs to determine which of its paths to extend. It does so based on the cost of the path and an estimate of the cost required to extend the path all the way to the goal.
 
 
-f(n) = g(n) + h(n)
+$f(n) = g(n) + h(n)$
 
 ## Complexity
-Depends on the heuristic (h(n)). |h(x) - h*(x)| = O(log h*(x)) where h* is the optimal heuristic. The logaritm of h error will not grow faster than h*. 
+Depends on the heuristic $\(h(n)). |h(x) - h*(x)| = O(log h*(x))$ where $h*$ is the optimal heuristic. The logaritm of $h$ error will not grow faster than $h*$. 
 
 The space required for A* is roughly the same as other graph searching algorithms. But, it keeps all nodes inside the memory, which is its drawback..
 
